@@ -1,0 +1,72 @@
+[
+  {
+    "id": "1",
+    "name": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    "metric": 4.6,
+    "status": "ok",
+    "evaluatedAt": "2026-04-14T21:52:00.655Z"
+  },
+  {
+    "id": "2",
+    "name": "qui est esse",
+    "metric": 2.22,
+    "status": "warning",
+    "evaluatedAt": "2026-04-14T21:52:00.655Z"
+  },
+  {
+    "id": "3",
+    "name": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+    "metric": 3.48,
+    "status": "ok",
+    "evaluatedAt": "2026-04-14T21:52:00.655Z"
+  },
+  {
+    "id": "4",
+    "name": "eum et est occaecati",
+    "metric": 4.68,
+    "status": "ok",
+    "evaluatedAt": "2026-04-14T21:52:00.655Z"
+  },
+  {
+    "id": "5",
+    "name": "nesciunt quas odio",
+    "metric": 0.29,
+    "status": "critical",
+    "evaluatedAt": "2026-04-14T21:52:00.655Z"
+  },
+  {
+    "id": "6",
+    "name": "dolorem eum magni eos aperiam quia",
+    "metric": 2.75,
+    "status": "ok",
+    "evaluatedAt": "2026-04-14T21:52:00.655Z"
+  },
+  {
+    "id": "7",
+    "name": "magnam facilis autem",
+    "metric": 2.9,
+    "status": "ok",
+    "evaluatedAt": "2026-04-14T21:52:00.655Z"
+  },
+  {
+    "id": "8",
+    "name": "dolorem dolore est ipsam",
+    "metric": 3.76,
+    "status": "ok",
+    "evaluatedAt": "2026-04-14T21:52:00.655Z"
+  },
+  {
+    "id": "9",
+    "name": "nesciunt iure omnis dolorem tempora et accusantium",
+    "metric": 2.13,
+    "status": "warning",
+    "evaluatedAt": "2026-04-14T21:52:00.655Z"
+  },
+  {
+    "id": "10",
+    "name": "optio molestias id quia eum",
+    "metric": 3.59,
+    "status": "ok",
+    "evaluatedAt": "2026-04-14T21:52:00.655Z"
+  }
+]
