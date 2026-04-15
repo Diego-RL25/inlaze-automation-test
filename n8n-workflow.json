@@ -1,0 +1,246 @@
+{
+  "name": "INLAZE test",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "campaigns",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b21ebcf3-422f-4d12-b29d-ed3a95ac326e",
+      "name": "Webhook",
+      "webhookId": "970be408-eef5-41be-b9dd-6977ea1c37c4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f76aa0fc-143d-41d0-b845-77e4dcb5042a",
+              "leftValue": "={{$json.status}}",
+              "rightValue": "ok",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        400,
+        0
+      ],
+      "id": "83df3b2c-c20e-4d80-82e3-0a1946c83f9c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f91547c1-edbf-403f-b71b-f6ebd6a80a58",
+              "leftValue": "={{$json.status}}",
+              "rightValue": "critical",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        608,
+        -96
+      ],
+      "id": "a8257358-971a-4b49-9fec-d5d83366ae35",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n-n8n.yqyj87.easypanel.host/webhook/campaings",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"content\": \"🚨 Critical campaign detected\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        816,
+        -192
+      ],
+      "id": "9da49ec6-fbfc-4af6-80a7-5057fe5f027c",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        304
+      ],
+      "id": "0543b3e3-e1d6-45e3-b187-293e1f2b5cf5",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "617e5bae-923c-4016-a7b2-4b551764afbb",
+              "name": "error",
+              "value": "={{$json.execution.error.message}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        176,
+        304
+      ],
+      "id": "cd09c698-a6d1-4f3b-836b-bdf8708c3970",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "01b34f7c-81d3-487c-bed5-f060e8367883",
+              "name": "name",
+              "value": "={{$json.name}}",
+              "type": "string"
+            },
+            {
+              "id": "123114f2-f9fa-4ca1-b023-8077119254f5",
+              "name": "metric",
+              "value": "={{$json.metric}}",
+              "type": "string"
+            },
+            {
+              "id": "25f1637a-1438-4a6d-b5ad-0b14a7e76b0f",
+              "name": "status",
+              "value": "={{$json.status}}",
+              "type": "string"
+            },
+            {
+              "id": "702d2cc3-0c0c-4b65-a956-0958580981ea",
+              "name": "evaluatedAt",
+              "value": "={{$json.evaluatedAt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        816,
+        0
+      ],
+      "id": "db185608-8a43-4b16-bc00-e69565927995",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "1ad37076-ec2d-480b-927f-867938169972",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8da11f95ab05a7938c5ccde12a74da4f00aaf14ecba707ba2cad8ee5f875993a"
+  },
+  "id": "aPZgWJlnzxmcaS59",
+  "tags": []
+}
